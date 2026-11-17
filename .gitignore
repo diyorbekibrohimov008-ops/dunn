@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production and build outputs
+dist/
+.vercel/
+.output/
+
+# TanStack / Vite cache
+.tanstack/
+.vite/
+
+# Grok dev logs & internal references
+.grok/references/
+.grok/skills/
+.grok/*.log
+.grok/status
+.grok/og-pending
+
+# Internal verification screenshots and scratch artifacts
+screenshots/
+artifacts/
+*.log
+.node_modules.lock
+
+# Environment and secrets (safety)
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db

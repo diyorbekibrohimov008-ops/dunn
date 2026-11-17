@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0c0c0b;
+  --color-surface: #151513;
+  --color-elevated: #1c1c19;
+  --color-fg: #eceae3;
+  --color-muted: #9a968c;
+  --color-subtle: #6f6b63;
+  --color-primary: #d8d3c6;
+  --color-primary-fg: #0c0c0b;
+  --color-border: #2a2925;
+  --color-paper: #eceae3;
+  --color-ink: #161512;
+  --color-ink-muted: #5c5850;
+  --color-danger: #c45c4a;
+  --color-warn: #c4a15a;
+  --color-ok: #7a9a7e;
+
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  --text-2xs: 0.6875rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+
+  --tracking-mark: 0.18em;
+  --tracking-kicker: 0.22em;
+
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-image:
+      radial-gradient(1200px 500px at 10% -10%, rgb(216 211 198 / 0.05), transparent 55%),
+      radial-gradient(900px 400px at 100% 0%, rgb(196 92 74 / 0.04), transparent 50%);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-sheet {
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
