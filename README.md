@@ -2,6 +2,10 @@
 
 Dunn is a client communication and overdue invoice recovery desk for freelancers, contractors, and boutique agencies. It turns late-payment stress into a systematic, dignified recovery process with ready invoice dispatch and progressive follow-up notices.
 
+> [!WARNING]
+> **Project Status — Work in Progress (Not Fully Ready)**
+> This project is currently under active development and is **not fully ready for production**. Some parts, features, or workflow steps will fail or behave unexpectedly. We are actively working on fixing all remaining issues.
+
 ---
 
 ## Highlights

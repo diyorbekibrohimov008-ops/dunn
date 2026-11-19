@@ -33,3 +33,10 @@ artifacts/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Secrets, environment variables, and deploy state
+*.env
+.netlify
+*.pem
+*.key
+.data/
