@@ -14,12 +14,10 @@ export const Route = createFileRoute("/tools")({ component: Tools });
 function Tools() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
-      <p className="text-2xs tracking-kicker text-subtle uppercase">The other $100 problems</p>
-      <h1 className="mt-2 font-serif text-4xl italic tracking-tight text-fg">Desk tools</h1>
+      <h1 className="font-serif text-4xl italic tracking-tight text-fg">Invoice calculators</h1>
       <p className="mt-2 max-w-2xl text-sm text-muted">
-        Late invoices are the loud problem. Scope creep and “should I even chase this”
-        sit next to it. Three calculators. No accounts. Nothing leaves this browser
-        except an optional rewrite.
+        Quick free calculators for late fees, the cost of waiting, deciding between small
+        claims and agencies, and pricing out-of-scope extras. Nothing leaves your browser.
       </p>
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
         <LateFeeTool />
@@ -164,8 +162,12 @@ function ChangeOrderTool() {
         className="mt-3"
         variant="outline"
         onClick={async () => {
-          await navigator.clipboard.writeText(`${letter.subject}\n\n${letter.body}`);
-          toast.success("Change order copied");
+          try {
+            await navigator.clipboard.writeText(`${letter.subject}\n\n${letter.body}`);
+            toast.success("Change order copied");
+          } catch {
+            toast.error("Could not access clipboard. Select and copy the text manually.");
+          }
         }}
       >
         Copy letter

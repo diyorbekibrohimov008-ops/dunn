@@ -8,11 +8,10 @@ export const Route = createFileRoute("/playbook")({ component: Playbook });
 function Playbook() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-12">
-      <p className="text-2xs tracking-kicker text-subtle uppercase">How dunning actually works</p>
-      <h1 className="mt-2 font-serif text-4xl italic tracking-tight text-fg">Playbook</h1>
+      <h1 className="font-serif text-4xl italic tracking-tight text-fg">Late invoice guide</h1>
       <p className="mt-3 text-base leading-relaxed text-muted">
-        Most late invoices are not malice. They are a missing due date, an unopened
-        email, and a sender who trained the client that chasing is optional.
+        Most late invoices aren't personal — they're a missed email, an unclear due date,
+        or a lack of follow-up. Here's the simple step-by-step schedule that works.
       </p>
 
       <article className="prose-dunn mt-10 flex flex-col gap-10 text-[15px] leading-relaxed text-muted">
@@ -75,7 +74,7 @@ function Playbook() {
 
       <p className="mt-10 text-xs leading-relaxed text-subtle">{DISCLAIMER}</p>
       <Button asChild className="mt-6">
-        <Link to="/new">Open a recovery file</Link>
+        <Link to="/new">Add an invoice</Link>
       </Button>
     </main>
   );

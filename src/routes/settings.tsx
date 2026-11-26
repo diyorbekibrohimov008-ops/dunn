@@ -70,11 +70,10 @@ function SettingsPage() {
 
   return (
     <main className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-12">
-      <p className="text-2xs tracking-kicker text-subtle uppercase">Email & automation</p>
-      <h1 className="mt-2 font-serif text-4xl italic tracking-tight text-fg">Settings</h1>
+      <h1 className="font-serif text-4xl italic tracking-tight text-fg">Gmail &amp; settings</h1>
       <p className="mt-2 max-w-xl text-sm text-muted">
-        Connect Gmail once so Dunn can email ready invoices and due follow-up letters
-        directly from your inbox.
+        Optional: connect your Gmail account so Dunn can send ready invoices and overdue
+        reminders directly from your own email address.
       </p>
 
       <div className="mt-8 flex flex-col gap-6">

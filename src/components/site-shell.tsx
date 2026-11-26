@@ -7,10 +7,10 @@ import { cn } from "@/lib/utils";
 import { HydrateDunn, useHasHydrated } from "./hydrate";
 
 const LINKS = [
-  { to: "/desk", label: "Desk" },
-  { to: "/new", label: "New file" },
-  { to: "/tools", label: "Tools" },
-  { to: "/playbook", label: "Playbook" },
+  { to: "/desk", label: "Invoices" },
+  { to: "/new", label: "Add invoice" },
+  { to: "/tools", label: "Calculators" },
+  { to: "/playbook", label: "Guide" },
   { to: "/settings", label: "Settings" },
 ] as const;
 
@@ -25,10 +25,10 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <AutoSendRunner />
       <header className="no-print sticky top-0 z-40 border-b border-border/80 bg-bg/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
-          <Link to="/" className="flex items-baseline gap-2">
+          <Link to="/" className="flex items-baseline gap-2.5">
             <span className="font-serif text-2xl italic tracking-tight text-fg">Dunn</span>
-            <span className="hidden text-2xs uppercase tracking-kicker text-subtle sm:inline">
-              Recovery desk
+            <span className="hidden text-xs text-subtle sm:inline">
+              Free invoice follow-ups
             </span>
           </Link>
           <nav className="flex flex-wrap items-center gap-1">
@@ -64,7 +64,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <div className="flex-1">{children}</div>
       <footer className="no-print border-t border-border/80">
         <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-6 text-xs text-subtle sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>Not a collection agency. Not legal advice. A desk for people who already did the work.</p>
+          <p>100% free forever. Runs privately in your browser. Not a collection agency or legal advice.</p>
           <p className="font-serif italic text-muted">Dunn</p>
         </div>
       </footer>

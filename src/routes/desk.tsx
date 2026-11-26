@@ -22,24 +22,23 @@ function Desk() {
     <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-12">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-2xs tracking-kicker text-subtle uppercase">The desk</p>
-          <h1 className="mt-2 font-serif text-4xl italic tracking-tight text-fg">Open files</h1>
+          <h1 className="font-serif text-4xl italic tracking-tight text-fg">Unpaid invoices</h1>
           <p className="mt-2 max-w-xl text-sm text-muted">
             {t
-              ? `${money(t.atRisk)} at risk across ${t.count} ${t.count === 1 ? "file" : "files"}. Waiting 30 days leaks about ${money(t.waitCost)} of expected recovery.`
-              : "Loading the desk…"}
+              ? `${money(t.atRisk)} unpaid across ${t.count} ${t.count === 1 ? "invoice" : "invoices"}. Click any invoice below to view or send its reminder email.`
+              : "Loading invoices…"}
           </p>
         </div>
         <Button asChild>
-          <Link to="/new">Open a file</Link>
+          <Link to="/new">Add an invoice</Link>
         </Button>
       </div>
 
       {t ? (
-        <dl className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
-          <Tile k="Open" v={money(t.atRisk)} />
-          <Tile k="Expected if you act" v={money(t.expected)} />
-          <Tile k="Cost of waiting 30 days" v={money(t.waitCost)} warn />
+        <dl className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <Tile k="Total unpaid" v={money(t.atRisk)} />
+          <Tile k="Likely to collect" v={money(t.expected)} />
+          <Tile k="Risk of waiting 30 days" v={money(t.waitCost)} warn />
         </dl>
       ) : (
         <div className="mt-8 h-24 rounded-xl border border-border bg-surface" />
@@ -97,7 +96,7 @@ function Desk() {
 function Tile({ k, v, warn }: { k: string; v: string; warn?: boolean }) {
   return (
     <div className="rounded-xl border border-border bg-surface px-4 py-4">
-      <dt className="text-2xs tracking-wide text-subtle uppercase">{k}</dt>
+      <dt className="text-xs text-subtle">{k}</dt>
       <dd className={`mt-1 font-mono text-lg tabular-nums ${warn ? "text-danger" : "text-fg"}`}>{v}</dd>
     </div>
   );

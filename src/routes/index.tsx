@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MatterRow } from "@/components/matter-row";
 import { useHasHydrated } from "@/components/hydrate";
@@ -17,26 +16,24 @@ function Home() {
   return (
     <main>
       <section className="mx-auto max-w-6xl px-4 pt-10 pb-8 sm:px-6 sm:pt-16">
-        <p className="text-2xs tracking-kicker text-subtle uppercase">Overdue invoice recovery</p>
+        <span className="inline-flex items-center rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted">
+          100% Free · Saved privately in your browser
+        </span>
         <h1 className="mt-4 max-w-3xl font-serif text-4xl leading-[1.12] tracking-tight text-fg sm:text-6xl">
-          You already did the work. Dunn writes the letter that gets you paid.
+          Get unpaid invoices paid without the awkwardness.
         </h1>
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-          Eighty-five percent of freelancers get paid late. The average small-business
-          overdue stack is $17,700. Collections keeps a third. Dunn builds the
-          sequence — courtesy, nudge, pause, demand — so one unpaid invoice does
-          not become a write-off.
+        <p className="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+          Enter an overdue invoice and Dunn writes the right reminder email for you — from
+          a friendly check-in to a clear final notice. Copy it in one click or send directly
+          through Gmail.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button asChild size="lg">
-            <Link to="/new">
-              Open a recovery file
-              <ArrowRight />
-            </Link>
+            <Link to="/new">Add an unpaid invoice</Link>
           </Button>
           <Button asChild size="lg" variant="outline">
             <Link to="/file/$fileId" params={{ fileId: "sample-harper" }}>
-              Try a sample file
+              Try a sample invoice
             </Link>
           </Button>
         </div>
@@ -44,34 +41,34 @@ function Home() {
 
       <section className="border-y border-border bg-surface/60">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px sm:grid-cols-4">
-          <Fact k="85%" v="of freelancers are paid late, at least sometimes" />
-          <Fact k="$17,700" v="average sitting unpaid at firms with 30-day overdue invoices" />
-          <Fact k="50%" v="recovery odds by day 90 if you have not escalated" />
-          <Fact k="25–50%" v="what an agency keeps of whatever they collect" />
+          <Fact k="85%" v="of freelancers deal with late client payments" />
+          <Fact k="$17,700" v="average unpaid balance at small businesses with overdue bills" />
+          <Fact k="50%" v="chance of getting paid after 90 days without a follow-up" />
+          <Fact k="$0" v="cost to use Dunn — no fees, no percentage cut, ever" />
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <h2 className="font-serif text-3xl italic text-fg">How a file works</h2>
+        <h2 className="font-serif text-3xl italic text-fg">How it works in 3 simple steps</h2>
         <ol className="mt-8 grid gap-4 sm:grid-cols-3">
-          <Step n="01" t="Open the invoice" d="Amount, due date, who owes you, what you delivered. Two minutes." />
-          <Step n="02" t="Read the diagnosis" d="Days overdue, recovery odds, the cost of waiting 30 more days, and the letter to send today." />
-          <Step n="03" t="Send, then stop thinking" d="Connect Gmail to send automatically when ready — or copy and mark sent. Dunn handles the next date." />
+          <Step n="Step 1" t="Enter the invoice" d="Add the amount, due date, client name, and what you delivered. Takes under a minute." />
+          <Step n="Step 2" t="Review your draft email" d="Dunn picks the right tone for how late the payment is and writes the email for you." />
+          <Step n="Step 3" t="Copy or send via Gmail" d="Copy the email to your clipboard, or connect Gmail to send follow-ups directly." />
         </ol>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h2 className="font-serif text-3xl italic text-fg">On the desk</h2>
+            <h2 className="font-serif text-3xl italic text-fg">Your invoices</h2>
             <p className="mt-2 text-sm text-muted">
               {t
-                ? `${money(t.atRisk)} open · ${money(t.expected)} expected if you act this week`
-                : "Loading files…"}
+                ? `${money(t.atRisk)} unpaid across open invoices — click any example below to preview its emails`
+                : "Loading invoices…"}
             </p>
           </div>
           <Link to="/desk" className="text-sm text-primary hover:underline">
-            Full desk
+            View all invoices
           </Link>
         </div>
         <div className="mt-6 flex flex-col gap-3">

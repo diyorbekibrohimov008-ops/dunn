@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Check, Copy, LoaderCircle, Mail, Send } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { prettyDate } from "@/lib/format";
@@ -33,6 +33,15 @@ export function LetterSheet({
   const [busy, setBusy] = useState<"warmer" | "sharper" | "shorter" | null>(null);
   const [sending, setSending] = useState(false);
   const [copied, setCopied] = useState(false);
+  const copyTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (copyTimerRef.current !== null) {
+        window.clearTimeout(copyTimerRef.current);
+      }
+    };
+  }, []);
 
   const text = `${letter.subject}\n\n${letter.body}`;
   const validRecipient = isValidEmail(matter.clientEmail);
@@ -45,10 +54,17 @@ export function LetterSheet({
       : (matter.sentLog.find((x) => x.stage === target) ?? null);
 
   async function copy() {
-    await navigator.clipboard.writeText(text);
-    setCopied(true);
-    toast.success("Copied to clipboard");
-    window.setTimeout(() => setCopied(false), 1500);
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      toast.success("Copied to clipboard");
+      if (copyTimerRef.current !== null) {
+        window.clearTimeout(copyTimerRef.current);
+      }
+      copyTimerRef.current = window.setTimeout(() => setCopied(false), 1500);
+    } catch {
+      toast.error("Could not access clipboard. Select and copy the text manually.");
+    }
   }
 
   async function sendViaGmail() {

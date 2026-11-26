@@ -1,10 +1,6 @@
-# Dunn — Overdue Invoice Recovery & Automated Dispatch Desk
+# Dunn — Free Overdue Invoice Follow-Up & Reminder Desk
 
-Dunn is a client communication and overdue invoice recovery desk for freelancers, contractors, and boutique agencies. It turns late-payment stress into a systematic, dignified recovery process with ready invoice dispatch and progressive follow-up notices.
-
-> [!WARNING]
-> **Project Status — Work in Progress (Not Fully Ready)**
-> This project is currently under active development and is **not fully ready for production**. Some parts, features, or workflow steps will fail or behave unexpectedly. We are actively working on fixing all remaining issues.
+Dunn is a **100% free** client communication and overdue invoice follow-up desk for freelancers, contractors, and small studios. Enter an unpaid invoice and Dunn calculates how overdue it is, recommends the right next step, and writes ready-to-send reminder emails — from a polite check-in to a formal final notice. Everything stays privately in your browser, with optional direct Gmail sending.
 
 ---
 

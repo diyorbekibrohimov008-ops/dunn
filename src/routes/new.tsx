@@ -160,11 +160,10 @@ function NewFile() {
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-12">
-      <p className="text-2xs tracking-kicker text-subtle uppercase">New recovery file</p>
-      <h1 className="mt-2 font-serif text-4xl italic tracking-tight text-fg">Open a file</h1>
+      <h1 className="font-serif text-4xl italic tracking-tight text-fg">Add an invoice</h1>
       <p className="mt-2 text-sm text-muted">
-        Put the invoice on the desk. Dunn diagnoses it, prepares the notice, and sends via
-        Gmail if connected.
+        Enter the invoice details below. Dunn checks how overdue it is, drafts the right
+        reminder email, and can send it through Gmail if connected.
       </p>
 
       <form onSubmit={(e) => void submit(e)} className="mt-10 flex flex-col gap-10">
@@ -282,7 +281,7 @@ function NewFile() {
         </fieldset>
 
         <fieldset>
-          <legend className="font-serif text-2xl text-fg">The relationship</legend>
+          <legend className="font-serif text-2xl text-fg">Your relationship with this client</legend>
           <div className="mt-4 grid gap-2 sm:grid-cols-3">
             {REL.map((r) => (
               <button
@@ -378,8 +377,8 @@ function NewFile() {
           {submitting
             ? "Sending via Gmail…"
             : canAutoSend
-              ? "Build file & send via Gmail"
-              : "Build the recovery file"}
+              ? "Save invoice & send via Gmail"
+              : "Save invoice & draft email"}
         </Button>
       </form>
     </main>

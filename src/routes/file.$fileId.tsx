@@ -52,12 +52,14 @@ function FilePage() {
   const [tab, setTab] = useState<FileTab | null>(null);
   const [emailDraft, setEmailDraft] = useState("");
   const [retrying, setRetrying] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const currentMatterId = matter?.id;
   const currentClientEmail = matter?.clientEmail ?? "";
 
   useEffect(() => {
     setTab(null);
+    setConfirmDelete(false);
   }, [fileId]);
 
   useEffect(() => {
@@ -188,17 +190,32 @@ function FilePage() {
           <Button variant="outline" onClick={() => window.print()}>
             <Printer /> Print
           </Button>
-          <Button
-            variant="ghost"
-            aria-label="Remove file"
-            onClick={() => {
-              remove(matter.id);
-              toast.message("File removed");
-              void navigate({ to: "/desk" });
-            }}
-          >
-            <Trash2 />
-          </Button>
+          {confirmDelete ? (
+            <>
+              <Button
+                variant="outline"
+                className="border-danger/60 text-danger hover:bg-danger/10"
+                onClick={() => {
+                  remove(matter.id);
+                  toast.message("Invoice removed");
+                  void navigate({ to: "/desk" });
+                }}
+              >
+                Confirm delete
+              </Button>
+              <Button variant="ghost" onClick={() => setConfirmDelete(false)}>
+                Cancel
+              </Button>
+            </>
+          ) : (
+            <Button
+              variant="ghost"
+              aria-label="Delete invoice"
+              onClick={() => setConfirmDelete(true)}
+            >
+              <Trash2 />
+            </Button>
+          )}
         </div>
       </div>
 
@@ -207,7 +224,7 @@ function FilePage() {
           <DiagnosisPanel matter={matter} />
 
           <section className="rounded-xl border border-border bg-surface p-5">
-            <h2 className="font-serif text-xl italic text-fg">Sequence</h2>
+            <h2 className="font-serif text-xl italic text-fg">Follow-up emails</h2>
             <ol className="mt-4 flex flex-col gap-1">
               <li>
                 <button
@@ -279,7 +296,7 @@ function FilePage() {
                 className={cn("text-muted", selectedTab === "phone" && "bg-elevated text-fg")}
                 onClick={() => setTab("phone")}
               >
-                Phone
+                Phone script
               </Button>
               <Button
                 size="sm"
@@ -287,7 +304,7 @@ function FilePage() {
                 className={cn("text-muted", selectedTab === "math" && "bg-elevated text-fg")}
                 onClick={() => setTab("math")}
               >
-                Math
+                Cost breakdown
               </Button>
             </div>
           </section>
@@ -388,8 +405,12 @@ function FilePage() {
                 className="mt-4"
                 variant="outline"
                 onClick={async () => {
-                  await navigator.clipboard.writeText(phone.script);
-                  toast.success("Script copied");
+                  try {
+                    await navigator.clipboard.writeText(phone.script);
+                    toast.success("Script copied");
+                  } catch {
+                    toast.error("Could not access clipboard. Select and copy the script manually.");
+                  }
                 }}
               >
                 Copy script

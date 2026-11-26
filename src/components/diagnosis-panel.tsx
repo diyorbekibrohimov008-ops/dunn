@@ -13,26 +13,26 @@ export function DiagnosisPanel({ matter }: { matter: Matter }) {
   return (
     <section className="rounded-xl border border-border bg-surface p-5 sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="font-serif text-2xl italic text-fg">The file</h2>
+        <h2 className="font-serif text-2xl italic text-fg">Invoice summary</h2>
         <StatusChip band={d.band} />
       </div>
       <p className="mt-2 text-sm text-muted">{d.path.why}</p>
 
       <dl className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
-        <Stat label="Age" value={daysLabel} />
-        <Stat label="Recovery odds" value={pct(d.probability)} />
+        <Stat label="Status" value={daysLabel} />
+        <Stat label="Chance of payment" value={pct(d.probability)} />
         <Stat label="Expected if you act" value={money(d.expected, matter.currency)} />
         <Stat
-          label="30-day wait cost"
+          label="Cost of waiting 30d"
           value={d.waitCost30 > 0 ? money(d.waitCost30, matter.currency) : "—"}
           warn={d.waitCost30 > 0}
         />
       </dl>
 
       <p className="mt-5 rounded-lg bg-elevated px-4 py-3 text-sm text-fg">
-        <span className="text-muted">Today: </span>
+        <span className="text-muted">Recommended next step: </span>
         {d.path.title}
-        {d.skipCourtesy ? " Skip the courtesy note — at this age it reads as optional." : null}
+        {d.skipCourtesy ? " Skip the gentle reminder — at this point a firmer note works better." : null}
       </p>
     </section>
   );
@@ -49,7 +49,7 @@ function Stat({
 }) {
   return (
     <div>
-      <dt className="text-2xs tracking-wide text-subtle uppercase">{label}</dt>
+      <dt className="text-xs text-subtle">{label}</dt>
       <dd className={`mt-1 font-mono text-sm tabular-nums ${warn ? "text-danger" : "text-fg"}`}>
         {value}
       </dd>
